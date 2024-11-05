@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello, Web!</title>
-  </head>
-  <body>
-    <h1>Test</h1>
-    <p>This page makes a request to an api route and displays the response.</p>
-    <button id="send">send</button>
-    <div id="response"></div>
+    <title>Test Art Inspiration</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>Art Inspiration App - Test Page</header>
+
+    <main>
+        <h1>Test Your Art Inspiration</h1>
+        <div class="form-group">
+            <label for="testInput" class="input-label">Try a test style:</label>
+            <input
+                type="text"
+                id="testInput"
+                placeholder="Try typing 'Cubism'"
+                class="theme-input"
+            />
+            <button id="testButton" class="submit-button">Test Inspiration</button>
+            <div id="testResult" class="result"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Go back to the <a href="index.html">main page</a>.</p>
+    </footer>
+
     <script>
-      const sendElement = document.getElementById("send");
-      sendElement.addEventListener("click", () => {
-        fetch(`/api/test`)
-          .then((response) => response.text())
-          .then((responseText) => {
-            const responseElement = document.getElementById("response");
-            responseElement.innerText = responseText;
-          });
-      });
+        document.getElementById("testButton").addEventListener("click", () => {
+            const testStyle = document.getElementById("testInput").value;
+
+            fetch(`/api/test?style=${testStyle}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById("testResult").innerText =
+                        `Suggested Test Style: ${data.suggestion}`;
+                })
+                .catch((error) => {
+                    document.getElementById("testResult").innerText = "Error: Could not fetch suggestion.";
+                    console.error(error);
+                });
+        });
     </script>
-  </body>
+</body>
 </html>
