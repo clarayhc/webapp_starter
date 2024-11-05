@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <link rel="stylesheet" href="styles.css">
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Inspiration Generator</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <div>
-    <form id="userForm">
-      <div class="form-group">
-        <label for="name" class="input-label">What kind of theme do you want for your wedding playlist?</label>
-        <input 
-          type="text" 
-          id="name" 
-          name="theme" 
-          class="theme-input" 
-          required
-          placeholder="e.g., Romantic dinner, Dance party, Cocktail hour..."
-        >
-        <div class="error" id="nameError"></div>
-        
-        <div class="genre-section">
-          <div class="genre-title">Select genre(s)</div>
-          <div 
-            id="genre-container" 
-            class="genre-container"
-            name="genre">
-          </div>
-        </div>
+    <header>
+        <h1>Art Inspiration Generator</h1>
+        <p>Find your next art style and theme inspiration!</p>
+    </header>
 
-        <button type="submitUserForm" class="submit-button" id="submitButton">
-          Generate a playlist!
-        </button>
-    </form>
-    <div id="playlist-container"></div>
+    <main>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="name" class="input-label">Enter a Theme:</label>
+                <input type="text" id="name" class="theme-input" placeholder="e.g., surrealism, nature" />
+                <span id="nameError" class="error"></span>
+            </div>
 
-  </div>
-  <script src="./main.js"></script>
+            <div class="style-section">
+                <h2 class="style-title">Choose Art Styles:</h2>
+                <div id="style-container" class="style-container"></div>
+            </div>
 
+            <button type="submit" class="submit-button">Generate Inspiration</button>
+        </form>
+
+        <div id="inspiration-container" class="inspiration-container"></div>
+    </main>
+
+    <footer>
+        <p>Powered by Creativity and Imagination</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-
 </html>
