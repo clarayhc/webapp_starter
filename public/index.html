@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <link rel="stylesheet" href="styles.css">
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Inspiration App</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <div>
-    <form id="userForm">
-      <div class="form-group">
-        <label for="name" class="input-label">What kind of theme do you want for your wedding playlist?</label>
-        <input 
-          type="text" 
-          id="name" 
-          name="theme" 
-          class="theme-input" 
-          required
-          placeholder="e.g., Romantic dinner, Dance party, Cocktail hour..."
-        >
-        <div class="error" id="nameError"></div>
-        
-        <div class="genre-section">
-          <div class="genre-title">Select genre(s)</div>
-          <div 
-            id="genre-container" 
-            class="genre-container"
-            name="genre">
-          </div>
+    <header>Art Inspiration App</header>
+
+    <main>
+        <h1>Find Your Art Inspiration</h1>
+        <div class="form-group">
+            <label for="artStyleInput" class="input-label">Enter a style or theme you like:</label>
+            <input
+                type="text"
+                id="artStyleInput"
+                placeholder="e.g., Impressionism, Modern, Abstract"
+                class="theme-input"
+            />
+            <button id="suggestButton" class="submit-button">Get Inspiration</button>
+            <div id="result" class="result"></div>
         </div>
+    </main>
 
-        <button type="submitUserForm" class="submit-button" id="submitButton">
-          Generate a playlist!
-        </button>
-    </form>
-    <div id="playlist-container"></div>
+    <footer>
+        <p>Created for art lovers everywhere. <a href="test.html">See more</a></p>
+    </footer>
 
-  </div>
-  <script src="./main.js"></script>
+    <script>
+        document.getElementById("suggestButton").addEventListener("click", () => {
+            const artStyle = document.getElementById("artStyleInput").value;
 
+            fetch(`/api/inspiration?style=${artStyle}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById("result").innerText =
+                        `Suggested Art Style: ${data.suggestion}`;
+                })
+                .catch((error) => {
+                    document.getElementById("result").innerText = "Error: Could not fetch suggestion.";
+                    console.error(error);
+                });
+        });
+    </script>
 </body>
-
 </html>
