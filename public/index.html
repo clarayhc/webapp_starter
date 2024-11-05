@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding</title>
+</head>
+
+<body>
+  <div>
+    <form id="userForm">
+      <div class="form-group">
+        <label for="name" class="input-label">What kind of theme do you want for your wedding playlist?</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="theme" 
+          class="theme-input" 
+          required
+          placeholder="e.g., Romantic dinner, Dance party, Cocktail hour..."
+        >
+        <div class="error" id="nameError"></div>
+        
+        <div class="genre-section">
+          <div class="genre-title">Select genre(s)</div>
+          <div 
+            id="genre-container" 
+            class="genre-container"
+            name="genre">
+          </div>
+        </div>
+
+        <button type="submitUserForm" class="submit-button" id="submitButton">
+          Generate a playlist!
+        </button>
+    </form>
+    <div id="playlist-container"></div>
+
+  </div>
+  <script src="./main.js"></script>
+
+</body>
+
+</html>
